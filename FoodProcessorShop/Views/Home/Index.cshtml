@@ -1,0 +1,36 @@
+﻿@model IEnumerable<FoodProcessor>
+@{
+    ViewData["Title"] = "Каталог Кухонных Комбайнов";
+}
+
+<!DOCTYPE html>
+ 
+<html>
+<body>
+    <h3>Комбайны</h3>
+<table>
+    <tr>
+        <td>Модель</td>
+        <td>Производитель</td>
+        <td>Цена</td>
+        <td>Материал чаши</td>
+        <td>Емкость чаши</td>
+        <td>Количество скоростей</td>
+        <td></td>
+    </tr>
+    @foreach (var foodProcessor in Model)
+    {
+        <tr>
+            <td>@foodProcessor.Name</td>
+            <td>@foodProcessor.Company</td>
+            <td>@foodProcessor.Price</td>
+            <td>@foodProcessor.BowlMaterial</td>
+            <td>@foodProcessor.BowlCapacity</td>
+            <td>@foodProcessor.SpeedsCount</td>
+            <td><a href="~/Home/Buy/@foodProcessor.Id">Купить</a></td>
+        </tr>
+    }
+</table>
+<a href="/Home/Orders" class="Button">Все заказы</a>
+</body>
+</html>

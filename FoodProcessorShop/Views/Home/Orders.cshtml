@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Order>
+
+@{
+    ViewBag.Title = "Заказы";
+    Layout = "_Layout";
+}
+
+<!DOCTYPE html>
+ 
+<html>
+<head>
+    <title>Список заказов</title>
+</head>
+<body>
+    <h3>Заказы</h3>
+<table>
+    <tr>
+        <td>ID заказа</td>
+        <td>Имя заказчика</td>
+        <td>Адрес</td>
+        <td>Телефон</td>
+        <td>Срочность</td>
+    </tr>
+    @foreach (var order in Model)
+    {
+        <tr>
+            <td>@order.OrderId</td>
+            <td>@order.User</td>
+            <td>@order.Address</td>
+            <td>@order.ContactPhone</td>
+            <td>@order.isUrgently</td>
+        </tr>
+    }
+</table>
+</body>
+</html>
