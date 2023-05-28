@@ -7,12 +7,10 @@ namespace FoodProcessorShop.Controllers;
 
 public class HomeController : Controller
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly AppDbContext _context;
+    private readonly IRepository _context;
 
-    public HomeController(ILogger<HomeController> logger, AppDbContext context)
+    public HomeController(IRepository context)
     {
-        _logger = logger;
         _context = context;
     }
 
@@ -26,10 +24,10 @@ public class HomeController : Controller
     }
     
     [HttpGet]
-    public IActionResult Buy(Guid? id)
+    public IActionResult Buy(Guid id)
     {
-        if (id == null) return RedirectToAction("Index");
-        ViewBag.FoodProcessorId = id;
+        if (id == Guid.Empty) return RedirectToAction("Index");
+        ViewData["Id"] = id;
         return View();
     }
     [HttpPost]
@@ -48,6 +46,13 @@ public class HomeController : Controller
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        try
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+        catch (Exception)
+        {
+            return RedirectToAction("Index");
+        }
     }
 }

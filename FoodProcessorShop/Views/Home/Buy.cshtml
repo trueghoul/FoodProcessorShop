@@ -12,7 +12,7 @@
     <h3>Форма оформления покупки</h3>
     <p>Для оформления покупки заполните следующие поля:</p>
     <form method="post">
-        <input type="hidden" value="@ViewBag.FoodProcessorId" name="FoodProcessorId"/>
+        <input type="hidden" value="@ViewData["Id"]" name="FoodProcessorId"/>
         <table>
             <tr>
                 <td>Имя:</td>
